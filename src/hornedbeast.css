@@ -1,0 +1,9 @@
+.beast img{
+    width: 200px;
+}
+
+.beast{
+    border: 20px solid maroon;
+    width: max-content;
+    background-color: maroon;
+}
