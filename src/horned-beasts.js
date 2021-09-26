@@ -42,7 +42,7 @@ class HornedBeasts extends React.Component{
             <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src={this.props.image} alt="a box" title=" a beast" />
   <Card.Body>
-    <Card.Title>{this.props.title}</Card.Title>
+    <Card.Title onClick= {this.props.toggleModal}>{this.props.title}</Card.Title>
     <Card.Text>
     {this.props.description}
     </Card.Text>
