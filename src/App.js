@@ -3,38 +3,39 @@ import './App.css';
 import Footer from './Footer.js';
 import Header from './Header.js';
 import Main from './Main.js';
+import SelectedBeast from './SelectedBeast'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import data from './data.json';
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      showModal: true
+      showModal: false,
+      selectedBeast: {},
+      beastData: data
 
     }
   }
-  toggleModal = () =>{
-    (this.state.showModal) ? this.setState({showModal:false}) : this.setState({showModal:true});
+  displayAsModal = (name) =>{
+    const selectedBeast = data.find(beast => beast.title === name);
+    this.setState({selectedBeast, showModal: true});
   }
+  handleClose = () => this.setState({showModal: false});
   render(){
   return (
     <>
-    
+    <h2>Random title: {this.state.beastData[0].title}</h2>
+    <Main 
+    beastData={this.state.beastData}
+    displayAsModal={this.displayAsModal}
+    />
+    <SelectedBeast selectedBeast={this.state.selectedBeast} handleClose={this.handleClose}
+    showModal={this.state.showModal}/>
     <Header />
-    <Main toggleModal={this.toggleModal} />
+    
     <Footer />
-    <Modal show={this.state.showModal} onHide={this.toggleModal}>
-        <Modal.Header>
-          <Modal.Title>You Like This Beast?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={this.toggleModal}>
-            Close
-          </Button>
-          
-        </Modal.Footer>
-      </Modal>
+   
     </>
   );
   }

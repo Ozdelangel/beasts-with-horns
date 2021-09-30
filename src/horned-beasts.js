@@ -9,13 +9,13 @@ class HornedBeasts extends React.Component{
         super(props);
         // state must be an object
         this.state = {
-            numClicks: 0,
+            fav: 0,
             isFav: false,
         }
        
     }
-    onAdd = () => {
-        this.setState({numClicks: this.state.numClicks + 1});
+    addfav = () => {
+        this.setState({fav: this.state.fav + 1});
         // console.log('button pressed');
     }
 
@@ -34,27 +34,31 @@ class HornedBeasts extends React.Component{
     }
     render() {
         return (
-            
-            
+            <>
+            <h2>{this.props.beast.title}</h2>
+            <p>{this.props.description}</p>
+            <p onClick={() => this.props.displayAsModal(this.props.beast.title)}>{this.props.beast.image_url}</p>
+            <p onClick ={this.addfav}> :heart = {this.state.fav}</p>
             
             
 
             <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={this.props.image} alt="a box" title=" a beast" />
-  <Card.Body>
-    <Card.Title onClick= {this.props.toggleModal}>{this.props.title}</Card.Title>
-    <Card.Text>
-    {this.props.description}
-    </Card.Text>
-    <p onClick={this.setFav}>Number Of Clicks: {this.state.numClicks}</p>
+            <Card.Img variant="top" src={this.props.image} alt="a box" title=" a beast" />
+            <Card.Body>
+            <Card.Title onClick= {this.props.toggleModal}>{this.props.title}</Card.Title>
+            <Card.Text>
+            {this.props.description}
+            </Card.Text>
+    <p onClick={this.setFav}>Number Of Clicks: {this.state.fav}</p>
             {/* (a ternary is a if/else all wrapped in on) */}
-            <p>{(this.state.isFav) ? 'heart': ''}</p>
-    <Button className='m-1' onClick={this.onAdd}>Add Fav</Button>
+            
+    <Button className='m-1' onClick={this.addfav}>Add Fav</Button>
     <Button className='m-1'onClick={this.notFav}>remove</Button>
   </Card.Body>
 </Card>
+</>
             
-        )
+        );
     }
 }
 
