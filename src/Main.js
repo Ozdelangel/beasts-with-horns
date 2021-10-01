@@ -15,6 +15,9 @@ class Main extends React.Component{
               return  <HornedBeasts
               key={idx}
               beast={beast}
+              title={beast.title}
+              image={beast.image_url}
+              description={beast.description}
               displayAsModal={this.props.displayAsModal}
               />
             })}

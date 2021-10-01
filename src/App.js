@@ -4,8 +4,9 @@ import Footer from './Footer.js';
 import Header from './Header.js';
 import Main from './Main.js';
 import SelectedBeast from './SelectedBeast'
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+
+// import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
 import data from './data.json';
 class App extends React.Component{
   constructor(props){
@@ -19,19 +20,20 @@ class App extends React.Component{
   }
   displayAsModal = (name) =>{
     const selectedBeast = data.find(beast => beast.title === name);
+    console.log('appsselectedbeast: ', selectedBeast, name);
     this.setState({selectedBeast, showModal: true});
   }
   handleClose = () => this.setState({showModal: false});
   render(){
   return (
     <>
-    <h2>Random title: {this.state.beastData[0].title}</h2>
+    
     <Main 
     beastData={this.state.beastData}
     displayAsModal={this.displayAsModal}
     />
     <SelectedBeast selectedBeast={this.state.selectedBeast} handleClose={this.handleClose}
-    showModal={this.state.showModal}/>
+    showModal={this.state.showModal} />
     <Header />
     
     <Footer />
