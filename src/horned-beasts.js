@@ -20,32 +20,26 @@ class HornedBeasts extends React.Component{
     }
 
     notFav = () => {
-        if(this.state.numClicks > 0)
-        this.setState({numClicks:this.state.numClicks - 1});
-    }
-    setFav = () => {
-        if(this.state.isFav){
-            this.setState({isFav:false})
+        if(this.state.fav > 0){
+            this.setState({fav: this.state.fav - 1});
         }
-        else{
-            this.setState({isFav:true})
+        
+    }
 
-        }
-    }
     render() {
         return (
             <>
             <h2>{this.props.beast.title}</h2>
-            <p>{this.props.description}</p>
-            <p onClick={() => this.props.displayAsModal(this.props.beast.title)}>{this.props.beast.image_url}</p>
+            <p >{this.props.description}</p>
+            
             <p onClick ={this.addfav}> :heart = {this.state.fav}</p>
             
             
 
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={this.props.image} alt="a box" title=" a beast" />
+            <Card.Img variant="top" src={this.props.image} alt="a beast" title=" a beast" />
             <Card.Body>
-            <Card.Title onClick= {this.props.toggleModal}>{this.props.title}</Card.Title>
+            <Card.Title onClick={() => this.props.displayAsModal(this.props.beast.title)}>{this.props.title}</Card.Title>
             <Card.Text>
             {this.props.description}
             </Card.Text>
